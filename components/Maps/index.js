@@ -6,6 +6,7 @@ import axios from "../../services/api";
 import { MyButton } from "./style";
 
 export default function Maps({ token }) {
+  //location == Barra do garcas
   const [viewport, setViewport] = useState({
     latitude: -15.89374841935585,
     longitude: -52.25873695254671,
