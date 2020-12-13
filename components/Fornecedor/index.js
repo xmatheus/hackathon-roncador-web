@@ -21,6 +21,7 @@ import {
   WrapperItem,
 } from "./style";
 import api from "../../services/api";
+import AddFornecedor from "../AddFornecedor";
 
 export default function Fornecedor({ userId }) {
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -35,6 +36,10 @@ export default function Fornecedor({ userId }) {
     });
   }, []);
 
+  function pushFornecedor(item) {
+    setData((prev) => [...prev, item]);
+  }
+
   return (
     <Container>
       <ModalProvider>
@@ -48,7 +53,11 @@ export default function Fornecedor({ userId }) {
             isOpen={isModalOpen}
             transition={ModalTransition.BOTTOM_UP}
           >
-            <button onClick={closeModal}>Close</button>
+            <AddFornecedor
+              closeModal={closeModal}
+              id={userId}
+              pushFornecedor={pushFornecedor}
+            />
           </Modal>
 
           <WrapperList>
