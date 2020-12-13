@@ -25,7 +25,7 @@ import AddFornecedor from "../AddFornecedor";
 
 export default function Fornecedor({ userId }) {
   const { isModalOpen, openModal, closeModal } = useModal();
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     api.get(`/fornecedor?mascateId=${userId}`).then((response) => {
