@@ -98,12 +98,22 @@ export default function Login() {
             <WrapperLocation>
               <WrapperInputsLocation>
                 <h3>Latitude</h3>
-                <input type={"text"} ref={latitudeRef} value={latitude} />
+                <input
+                  type={"text"}
+                  ref={latitudeRef}
+                  value={latitude}
+                  onChange={(e) => setLatitude(e.target.value)}
+                />
               </WrapperInputsLocation>
 
               <WrapperInputsLocation>
                 <h3>Longitude</h3>
-                <input type={"text"} ref={longitudeRef} value={longitude} />
+                <input
+                  type={"text"}
+                  ref={longitudeRef}
+                  value={longitude}
+                  onChange={(e) => setLongitude(e.target.value)}
+                />
               </WrapperInputsLocation>
             </WrapperLocation>
 
