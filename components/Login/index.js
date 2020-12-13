@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Router from "next/router";
 
@@ -8,14 +8,37 @@ import {
   Title,
   WrapperInputs,
   PlayButton,
+  WrapperLocation,
+  WrapperInputsLocation,
 } from "./style";
 import api from "../../services/api";
 
 export default function Login() {
-  const inputRef = useRef();
+  const emailRef = useRef();
+  const nomeRef = useRef();
+  const latitudeRef = useRef();
+  const longitudeRef = useRef();
+  const telefoneRef = useRef();
+  const categoriaRef = useRef();
+
+  const [signup, setSignUp] = useState(false);
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+
+  function getLocation() {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  }
 
   function handleLogin() {
-    const value = inputRef.current.value;
+    const value = emailRef.current.value;
 
     if (value) {
       api.get(`/mascates?email=${value}`).then((response) => {
@@ -23,7 +46,9 @@ export default function Login() {
         if (data.length > 0) {
           Router.push(`/user/${data[0].id}`);
         } else {
-          alert("User not found");
+          setSignUp(true);
+
+          getLocation();
         }
       });
     } else {
@@ -31,8 +56,31 @@ export default function Login() {
     }
   }
 
+  function handleSignup() {
+    const nome = nomeRef.current.value;
+    const categoria = categoriaRef.current.value;
+    const telefone = telefoneRef.current.value;
+    const email = emailRef.current.value;
+
+    api
+      .post("/mascates", {
+        nome,
+        latitude: latitudeRef.current.value,
+        longitude: longitudeRef.current.value,
+        categoria,
+        telefone,
+        email,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
-    <Container>
+    <Container signup={signup}>
       <WrapperLogo>
         <Image src="/logo.svg" height={"94px"} width={"94px"} />
         <Title>MascateLytics</Title>
@@ -40,10 +88,40 @@ export default function Login() {
 
       <WrapperInputs>
         <h3>Email</h3>
-        <input type={"email"} ref={inputRef} />
+        <input type={"email"} ref={emailRef} />
+
+        {signup && (
+          <>
+            <h3>Nome</h3>
+            <input type={"text"} ref={nomeRef} />
+            <WrapperLocation>
+              <WrapperInputsLocation>
+                <h3>Latitude</h3>
+                <input type={"text"} ref={latitudeRef} value={latitude} />
+              </WrapperInputsLocation>
+
+              <WrapperInputsLocation>
+                <h3>Longitude</h3>
+                <input type={"text"} ref={longitudeRef} value={longitude} />
+              </WrapperInputsLocation>
+            </WrapperLocation>
+
+            <WrapperLocation>
+              <WrapperInputsLocation>
+                <h3>Telefone</h3>
+                <input type={"text"} ref={telefoneRef} />
+              </WrapperInputsLocation>
+
+              <WrapperInputsLocation>
+                <h3>Categoria</h3>
+                <input type={"text"} ref={categoriaRef} />
+              </WrapperInputsLocation>
+            </WrapperLocation>
+          </>
+        )}
       </WrapperInputs>
 
-      <PlayButton onClick={handleLogin}>
+      <PlayButton onClick={signup ? handleSignup : handleLogin}>
         <Image src={"/play.svg"} width={"94px"} height={"94px"} />
       </PlayButton>
     </Container>
