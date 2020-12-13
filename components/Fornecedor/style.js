@@ -67,6 +67,8 @@ export const CardNumber = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 
   p {
     font-family: "Quicksand", sans-serif;
