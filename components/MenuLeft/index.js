@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Container, WrapperLogo, Title } from "./style";
+import { Container, WrapperLogo } from "./style";
 
 export default function MenuLeft({ children }) {
   return (
