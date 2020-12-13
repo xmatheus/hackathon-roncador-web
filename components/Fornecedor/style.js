@@ -66,6 +66,7 @@ export const CardNumber = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border-radius: 10px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -77,6 +78,12 @@ export const CardNumber = styled.div`
     font-size: 60px;
 
     color: #ffffff;
+  }
+
+  img {
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 

@@ -40,6 +40,12 @@ export default function Fornecedor({ userId }) {
     setData((prev) => [...prev, item]);
   }
 
+  function deleteFornecedor(id) {
+    api.delete(`/fornecedor/${id}`).then(() => {
+      setData((prev) => prev.filter((item) => item.id !== id));
+    });
+  }
+
   return (
     <Container>
       <ModalProvider>
@@ -66,6 +72,14 @@ export default function Fornecedor({ userId }) {
                 <Card>
                   <CardNumber>
                     <p>{index}</p>
+                    <Image
+                      src="/trash.svg"
+                      width="25px"
+                      height="25px"
+                      onClick={() => {
+                        deleteFornecedor(item.id);
+                      }}
+                    />
                   </CardNumber>
                   <WrapperFirstText>
                     <h2>{item.nome}</h2>
