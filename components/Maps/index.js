@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import Image from "next/image";
 
-import axios from "../../services/api";
+import api from "../../services/api";
 import { MyButton, WrapperPopup, WrapperIconAndText } from "./style";
 
 export default function Maps({ token }) {
@@ -17,7 +17,7 @@ export default function Maps({ token }) {
   const [selectedMascate, setSelectedMascate] = useState();
 
   useEffect(() => {
-    axios.get("http://localhost:3001/mascates").then((response) => {
+    api("/mascates").then((response) => {
       setMascates(response.data);
     });
   }, []);
@@ -52,6 +52,7 @@ export default function Maps({ token }) {
             </MyButton>
           </Marker>
         ))}
+
       {selectedMascate ? (
         <Popup
           latitude={Number(selectedMascate.latitude)}
