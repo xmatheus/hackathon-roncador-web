@@ -25,15 +25,16 @@ export const Container = styled.div`
   }
   @media (max-width: 728px) {
     width: 60%;
-    height: 70%;
+    height: ${(props) => (props.signup ? "99%" : "60%")};
+    overflow-y: auto;
+    transform: translate(-50%, -50%);
+    left: 50%;
     /* left: 35%; */
   }
 
   @media (max-width: 550px) {
     width: 80%;
     height: 70%;
-    transform: translate(-50%, -50%);
-    left: 50%;
   }
 `;
 
@@ -47,6 +48,7 @@ export const WrapperLogo = styled.div`
     @media (max-width: 728px) {
       width: 70px;
       height: 70px;
+      margin-top: 0px;
     }
   }
 `;
@@ -61,7 +63,7 @@ export const Title = styled.div`
   color: #054d2f;
 
   @media (max-width: 728px) {
-    font-size: 34px;
+    font-size: 30px;
   }
   @media (max-width: 550px) {
     font-size: 28px;
@@ -84,8 +86,16 @@ export const WrapperInputs = styled.div`
     margin-bottom: 10px;
     color: #054d2f;
 
+    @media (max-width: 728px) {
+      font-size: 20px;
+    }
+
     :nth-of-type(2) {
       margin-top: 30px;
+      @media (max-width: 728px) {
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
     }
   }
 
@@ -114,14 +124,33 @@ export const WrapperLocation = styled.div`
   justify-content: space-between;
   margin-top: 30px;
   width: 100%;
+
+  @media (max-width: 728px) {
+    flex-direction: column;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const WrapperInputsLocation = styled(WrapperInputs)`
   width: auto;
   margin: 0px;
   padding: 0px;
+
+  :nth-of-type(1) {
+    margin-top: 10px;
+  }
+
+  @media (max-width: 728px) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
   input {
     width: 100%;
     max-width: 300px;
+    @media (max-width: 728px) {
+      max-width: 100%;
+    }
   }
 `;

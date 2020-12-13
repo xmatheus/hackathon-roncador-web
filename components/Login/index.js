@@ -72,6 +72,7 @@ export default function Login() {
         email,
       })
       .then((response) => {
+        Router.push(`/user/${response.data.id}`);
         console.log(response.data);
       })
       .catch((err) => {

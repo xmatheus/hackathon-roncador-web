@@ -3,7 +3,7 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import Image from "next/image";
 
 import axios from "../../services/api";
-import { MyButton } from "./style";
+import { MyButton, WrapperPopup, WrapperIconAndText } from "./style";
 
 export default function Maps({ token }) {
   //location == Barra do garcas
@@ -60,10 +60,37 @@ export default function Maps({ token }) {
             setSelectedMascate(null);
           }}
         >
-          <div>
+          <WrapperPopup>
             <h2>{selectedMascate.nome}</h2>
-            <p>{selectedMascate.telefone}</p>
-          </div>
+
+            <WrapperIconAndText>
+              <Image
+                src="/play.svg"
+                alt="categoria, from flaticons"
+                width={21}
+                height={21}
+              />
+              <p>{selectedMascate.categoria}</p>
+            </WrapperIconAndText>
+            <WrapperIconAndText>
+              <Image
+                src="/mail.svg"
+                alt="email icon, from flaticons"
+                width={21}
+                height={21}
+              />
+              <p>{selectedMascate.email}</p>
+            </WrapperIconAndText>
+            <WrapperIconAndText>
+              <Image
+                src="/telephone.svg"
+                alt="telephone, from flaticons"
+                width={21}
+                height={21}
+              />
+              <p>{selectedMascate.telefone}</p>
+            </WrapperIconAndText>
+          </WrapperPopup>
         </Popup>
       ) : null}
     </ReactMapGL>
