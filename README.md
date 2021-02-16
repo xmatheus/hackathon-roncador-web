@@ -1,3 +1,29 @@
+<p align="center">
+  <img  width= '400px'src="https://user-images.githubusercontent.com/34286800/108082085-122fa280-7048-11eb-8e33-563507fcb03d.png">
+</p>
+
+### MascateLytics
+
+Projeto ganhador do Hackathon Roncador Valley
+
+O Objetivo era criar uma solução que auxiliasse vendedores ambulantes e comerciantes locais(Barra do garças).
+
+Foi desenvolvido um site para controlar estoque e gerar insights sobre demandas futuras e próximos gastos. Foi utilizado Machine Learning para as previsões.
+
+Por conta do tempo(2 dias) não foi possível acoplar o algoritmo em python que gerava as previões, por isso ele foi apresentado a parte.
+[repositório do algoritmo](https://github.com/Miguelflj/hackathon-roncador-valley-previs-o_demanda).
+
+
+
+O site foi desenvolvido com Nextjs e utilizado o Mapbox para mapas.
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
